@@ -61,3 +61,21 @@ tick_marks = np.arange(len(acoes))
 plt.xticks(tick_marks, acoes, rotation=45)
 plt.yticks(tick_marks, acoes)
 plt.show()
+
+
+# Calcular a volatilidade (desvio padrão) dos retornos
+volatilidades = retornos.std()
+
+# Plotar o gráfico de retorno x risco para cada ação
+plt.figure(figsize=(10, 6))
+for i in range(len(acoes)):
+    retorno = np.mean(retornos[acoes[i]])  # Retorno médio da ação
+    risco = volatilidades[acoes[i]]  # Volatilidade da ação
+    plt.scatter(risco, retorno, label=acoes[i])
+
+plt.xlabel('Risco (Volatilidade)')
+plt.ylabel('Retorno')
+plt.title('Retorno x Risco das Ações')
+plt.legend()
+plt.grid(True)
+plt.show()
